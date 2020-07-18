@@ -24,14 +24,30 @@
     <!-- #User Info -->
     <!-- Menu -->
     <div class="menu">
+
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active">
-                <a href="index.html">
+            @if(Request::is('admin*'))
+            <li class="{{Request::is('admin/dashboard') ? 'active' : ''}}">
+                <a href="{{route('admin.dashboard')}}">
                     <i class="material-icons">dashboard</i>
                     <span>Dashboard</span>
                 </a>
             </li>
+
+            <li class="{{Request::is('admin/tag*') ? 'active' : ''}}">
+                <a href="{{route('admin.tag.index')}}">
+                    <i class="material-icons">label</i>
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li class="{{Request::is('admin/category*') ? 'active' : ''}}">
+                <a href="{{route('admin.category.index')}}">
+                    <i class="material-icons">label</i>
+                    <span>category</span>
+                </a>
+            </li>
+           
             
            <li class="header">System</li>
 
@@ -48,9 +64,39 @@
              @csrf
          </form>
          </li>
+         @endif
+
+         @if(Request::is('author*'))
+         <li class="{{Request::is('author/dashboard') ? 'active' : ''}}">
+             <a href="{{route('author.dashboard')}}">
+                 <i class="material-icons">dashboard</i>
+                 <span>Dashboard</span>
+             </a>
+         </li>
         
+         
+        <li class="header">System</li>
+
+        <li>
+         <a class="dropdown-item" href="{{ route('logout') }}"
+         onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+         <i class="material-icons">input</i>
+         <span>Sign Out</span>
+         
+      </a>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+      </form>
+      </li>
+      @endif
+     </ul>
+ </div>
         </ul>
     </div>
+
+    
     <!-- #Menu -->
     <!-- Footer -->
     <div class="legal">
