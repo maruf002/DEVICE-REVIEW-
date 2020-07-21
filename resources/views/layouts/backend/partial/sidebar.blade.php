@@ -47,6 +47,12 @@
                     <span>category</span>
                 </a>
             </li>
+            <li class="{{Request::is('admin/product*') ? 'active' : ''}}">
+                <a href="{{route('admin.product.index')}}">
+                    <i class="material-icons">shopping_cart</i>
+                    <span>Products</span>
+                </a>
+            </li>
            
             
            <li class="header">System</li>

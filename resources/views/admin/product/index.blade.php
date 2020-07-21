@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
 
-@section('title', 'Category')
+@section('title', 'PRODUCTS')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -11,9 +11,9 @@
 @section('content')
 <div class="container-fluid">
     <div class="block-header">
-    <a class="btn btn-primary waves-effect" href="{{route('admin.category.create')}}">
+    <a class="btn btn-primary waves-effect" href="{{route('admin.product.create')}}">
       <i class="material-icons">add</i>
-      <span>Add New Category</span>
+      <span>Add New PRODUCT</span>
     </a>
     </div>
    
@@ -23,8 +23,8 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                      ALL Categories
-                    <span class="badge bg-blue">{{$categories->count()}}</span>
+                      ALL PRODUCTS
+                    <span class="badge bg-blue">{{$products->count()}}</span>
                     </h2>
                     <ul class="header-dropdown m-r--5">
                         <li class="dropdown">
@@ -45,8 +45,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>POST COUNT</th>
+                                    <th>TITLE</th>
+                                    <th>AUTHOR</th>
+                                    <th>IS APPROVED</th>
+                                    <th>STATUS</th>
                                     <th>CREATED AT</th>
                                     <th>UPDATED AT</th>
                                     <th>ACTION</th>
@@ -55,28 +57,46 @@
                             <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NAME</th>
-                                    <th>PRODUCT COUNT</th>
+                                    <th>TITLE</th>
+                                    <th>AUTHOR</th>
+                                    <th>IS APPROVED</th>
+                                    <th>STATUS</th>
                                     <th>CREATED AT</th>
                                     <th>UPDATED AT</th>
                                     <th>ACTION</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                               @foreach($categories as $key => $cat)
+                               @foreach($products as $key => $product)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$cat->name}}</td>
-                                    <td>{{$cat->products->count()}}</td>
-                                    <td>{{$cat->created_at}}</td>
-                                    <td>{{$cat->updated_at}}</td>
+                                    <td>{{$product->title}}</td>
+                                    <td>{{$product->user->name}}</td>
                                     <td>
-                                    <a href="{{route('admin.category.edit',$cat->id)}}" class="btn btn-info"><i class="material-icons">edit</i></a>
+                                        @if($product->is_approved == true)
+                                            <span class="badge bg-blue">Approved</span>
+                                            @else
+                                            <span class="badge bg-pink">Pending</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                       @if($product->status == true)
+                                       <span class="badge bg-blue">published</span>
+                                       @else
+                                       <span class="badge bg-blue">Pending</span>
+                                           
+                                       @endif
+                                    </td>
+                                    <td>{{$product->created_at}}</td>
+                                    <td>{{$product->updated_at}}</td>
+                                    <td>
+                                    <a href="{{route('admin.product.show',$product->id)}}" class="btn btn-info"><i class="material-icons">visibility</i></a>
+                                    <a href="{{route('admin.product.edit',$product->id)}}" class="btn btn-info"><i class="material-icons">edit</i></a>
                                    
-                                    <button class="btn btn-danger waves-effect" type="button" onclick="deleteCat({{$cat->id}})">
+                                    <button class="btn btn-danger waves-effect" type="button" onclick="deleteProduct({{$product->id}})">
                                        <i class="material-icons">delete</i>
                                     </button>
-                                <form id="delete-form-{{$cat->id}}" action="{{route('admin.category.destroy',$cat->id)}}" method="post" style="display: none;">
+                                <form id="delete-form-{{$product->id}}" action="{{route('admin.product.destroy',$product->id)}}" method="post" style="display: none;">
                                     @csrf
                                     @method('delete')
                                 </form>
@@ -91,7 +111,6 @@
             </div>
         </div>
     </div>
-    
     <!-- #END# Exportable Table -->
 </div>
 @endsection
@@ -124,7 +143,7 @@
      <script src="{{asset('assets/backend/js/pages/tables/jquery-datatable.js')}}"></script> 
      <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script> 
      <script type="text/javascript">
-        function deleteCat(id) {
+        function deleteProduct(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

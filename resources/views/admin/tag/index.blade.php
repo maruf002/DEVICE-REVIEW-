@@ -46,6 +46,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>PRODUCT COUNT</th>
                                     <th>CRETED AT</th>
                                     <th>UPDATED AT</th>
                                     <th>ACTION</th>
@@ -55,6 +56,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>PRODUCT COUNT</th>
                                     <th>CREATED AT</th>
                                     <th>UPDATED AT</th>
                                     <th>ACTION</th>
@@ -64,7 +66,8 @@
                                @foreach($tags as $key => $tag)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$tag->name}}</td>
+                                    <td>{{$tag->name}}</td>   
+                                    <td>{{$tag->products->count()}}</td>   
                                     <td>{{$tag->created_at}}</td>
                                     <td>{{$tag->updated_at}}</td>
                                     <td>
