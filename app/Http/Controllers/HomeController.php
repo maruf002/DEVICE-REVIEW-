@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +13,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
 
     /**
      * Show the application dashboard.
@@ -23,6 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::all();
+        $products   = product::latest()->approved()->published()->take(6)->get();
+        return view('welcome',compact('categories','products'));
     }
 }

@@ -2,7 +2,7 @@
 @extends('layouts.backend.app')
 
 
-@section('title', 'Category add')
+@section('title', 'Product')
 
 @push('css')
       <!-- Bootstrap Select Css -->
@@ -12,18 +12,14 @@
 @section('content')
 <div class="container-fluid">
     
-<a href="{{route('admin.product.index')}}" class="btn btn-danger">Back</a>
+<a href="{{route('author.product.index')}}" class="btn btn-danger">Back</a>
 
 @if($product->is_approved == false)
 
-<button type="button" class="btn btn-success pull-right" onclick="approvePost({{$product->id}})" >
+<button type="button" class="btn btn-success pull-right" >
 <i class="material-icons">done</i>
 <span>Approve</span>
 </button>
-<form id="approval-form" action="{{route('admin.product.approve',$product->id)}}" method="post" style="display: none;">
-    @csrf
-    @method('put')
- </form>                                                                                                                                                                                                                      
 @else
 <button type="button" class="btn btn-success pull-right " disabled >
     <i class="material-icons">done</i>
@@ -103,38 +99,6 @@
 
 
 @push('js')
-<script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script> 
-<script type="text/javascript">
-    function approvePost(id) {
-        swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, approve it!',
-            cancelButtonText: 'No, cancel!',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false,
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                event.preventDefault();
-                document.getElementById('approval-form').submit();
-            } else if (
-                // Read more about handling dismissals
-                result.dismiss === swal.DismissReason.cancel
-            ) {
-                swal(
-                    'Cancelled',
-                    'Your data is safe :)',
-                    'error'
-                )
-            }
-        })
-    }
-</script>
+    
 
 @endpush
