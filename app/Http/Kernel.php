@@ -2,9 +2,16 @@
 
 namespace App\Http;
 
+<<<<<<< HEAD
 
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+=======
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AuthorMiddleware;
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use PharIo\Manifest\Author;
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
 
 class Kernel extends HttpKernel
 {
@@ -66,5 +73,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin'    => AdminMiddleware::class,
+<<<<<<< HEAD
+=======
+        'author'   => AuthorMiddleware::class,
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
     ];
 }

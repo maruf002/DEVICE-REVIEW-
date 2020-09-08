@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<<<<<<< HEAD
     <title>@yield('content'){{ config('app.name', 'Laravel') }}</title>
 
  
@@ -61,5 +62,73 @@
     <script src="{{asset('front_assets/js/form-validator.min.js')}}"></script>
     <script src="{{asset('front_assets/js/contact-form-script.js')}}"></script>
     <script src="{{asset('front_assets/js/custom.js')}}"></script>
+=======
+    <title>@yield('title')-{{ config('app.name', 'Laravel') }}</title>
+
+
+    <!-- Fonts -->
+  <!-- Font -->
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    	<!-- Stylesheets -->
+
+	<link href="{{asset('assets/frontend/css/common-css/bootstrap.css')}}" rel="stylesheet">
+
+
+	<link href="{{asset('assets/frontend/css/common-css/swiper.css')}}" rel="stylesheet">
+
+	<link href="{{asset('assets/frontend/css/ionicons.css')}}" rel="stylesheet">  
+	{{-- ionicons css should put out of a folder in css --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	
+
+	
+
+
+
+    @stack('css')
+</head>
+<body>
+ @include('layouts.frontend.partial.header')
+ 
+	
+
+    @yield('content')
+
+
+@include('layouts.frontend.partial.footer')
+
+
+
+   <!-- SCIPTS -->
+
+	<script src="{{asset('assets/frontend/js/common-js/jquery-3.1.1.min.js')}}"></script>
+
+	<script src="{{asset('assets/frontend/js/common-js/tether.min.js')}}"></script>
+
+	<script src="{{asset('assets/frontend/js/common-js/bootstrap.js')}}"></script>
+
+	<script src="{{asset('assets/frontend/js/common-js/scripts.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	{!! Toastr::message() !!}
+	 
+	<script>
+	   @if($errors->any())
+	   @foreach($errors->all() as $error)
+		 toastr.error('{{ $error }}', 'Error',{
+			 closeButton:true,
+			 progressBar:true,
+
+		 });
+
+	   @endforeach
+
+	   @endif
+	   
+   </script>
+	
+    @stack('js')
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
 </body>
 </html>

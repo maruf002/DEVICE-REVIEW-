@@ -39,9 +39,17 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+<<<<<<< HEAD
         if(Auth::check() && Auth::User()->id ==1){
             $this->redirectTo = route('admin.dashboard');
         }
+=======
+        if(Auth::check() && Auth::user()->role->id == 1){
+            $this->redirectTo = route('admin.dashboard');
+         }else{
+             $this->redirectTo = route('author.dashboard');
+         }
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
         $this->middleware('guest');
     }
 
@@ -55,6 +63,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+<<<<<<< HEAD
+=======
+            'username' => ['required', 'string', 'max:255|unique:users'],
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -69,7 +81,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
+<<<<<<< HEAD
             'name' => $data['name'],
+=======
+            'role_id' => 2,
+            'name' => $data['name'],
+            'username'=>str_slug($data['username']),
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

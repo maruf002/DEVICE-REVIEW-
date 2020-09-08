@@ -16,7 +16,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+<<<<<<< HEAD
         'name', 'email', 'password',
+=======
+       'role_id', 'name','username', 'email', 'password',
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
     ];
 
     /**
@@ -36,4 +40,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
+=======
+
+    public function role(){
+        return $this->belongsTo('App\Role');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product');
+    }
+    public function favorite_products(){
+        return $this->belongsToMany('App\product');
+    }
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
 }

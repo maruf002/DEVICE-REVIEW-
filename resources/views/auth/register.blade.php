@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.app')
+=======
+@extends('layouts.frontend.app')
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
 
 @section('content')
 <div class="container">
@@ -24,6 +28,25 @@
                                 @enderror
                             </div>
                         </div>
+<<<<<<< HEAD
+=======
+                       
+                        
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus>
+
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div> 
+
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>

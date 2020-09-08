@@ -15,7 +15,11 @@
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
+<<<<<<< HEAD
         "lodash": "^4.17.19",
+=======
+        "lodash": "^4.17.13",
+>>>>>>> 78134d595fe4aa8c57c6b996d9f2cdf52e2bd44d
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
